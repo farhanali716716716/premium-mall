@@ -6,7 +6,15 @@
     <title>Farhan Ultra Luxury Mall</title>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root { --bg-deep: #030408; --bg-surface: #0a0d1a; --gold-glow: #f59e0b; --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); --text-light: #f8fafc; --text-gray: #64748b; --neon-blue: #0ea5e9; }
+        :root {
+            --bg-deep: #030408;
+            --bg-surface: #0a0d1a;
+            --gold-glow: #f59e0b;
+            --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            --text-light: #f8fafc;
+            --text-gray: #64748b;
+            --neon-blue: #0ea5e9;
+        }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; background-color: var(--bg-deep); color: var(--text-light); -webkit-font-smoothing: antialiased; }
         header { background: #0a0d1a; padding: 20px; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); }
         .header-brand { display: flex; align-items: center; gap: 12px; }
@@ -31,12 +39,12 @@
         .card .price-now { color: var(--gold-glow); font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
         .card .price-was { color: #475569; font-size: 15px; text-decoration: line-through; }
         .card .purchase-btn { background: var(--gold-gradient); color: #000; border: none; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 800; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(217,119,6,0.2); }
-        .checkout-drawer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; align-items: flex-end; justify-content: center; }
-        .drawer-content { background: #060813; border-top-left-radius: 32px; border-top-right-radius: 32px; width: 100%; max-width: 520px; padding: 30px; box-sizing: border-box; border-top: 1px solid #1e293b; max-height: 85vh; overflow-y: auto; }
-        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .drawer-title { font-size: 20px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .checkout-drawer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; }
+        .drawer-content { background: #060813; border-radius: 28px; width: 90%; max-width: 500px; padding: 25px; box-sizing: border-box; border: 1px solid #1e293b; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .drawer-title { font-size: 20px; font-weight: 800; color: #fff; text-transform: uppercase; }
         .drawer-close { font-size: 24px; color: var(--text-gray); cursor: pointer; }
-        .item-preview { background: var(--bg-surface); border-radius: 16px; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #141b2d; margin-bottom: 25px; }
+        .item-preview { background: var(--bg-surface); border-radius: 16px; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #141b2d; margin-bottom: 20px; }
         .preview-title { font-weight: 700; color: #fff; font-size: 16px; }
         .preview-cost { color: var(--gold-glow); font-size: 16px; font-weight: 800; margin-top: 3px; }
         input, textarea { width: 100%; padding: 15px; margin-bottom: 16px; background: #030408; color: white; border: 1px solid #141b2d; border-radius: 14px; box-sizing: border-box; font-size: 14px; font-family: sans-serif; }
