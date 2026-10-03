@@ -3,129 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhan Premium Store</title>
-    <!-- Official Font Awesome Icon Library Framework -->
+    <title>Farhan Ultra Luxury Mall</title>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root {
-            --bg-main: #0a0a0c;
-            --bg-card: #111216;
-            --accent: #f59e0b;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-        }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-main); color: var(--text-main); }
-        header { background-color: var(--bg-card); padding: 15px 20px; border-bottom: 1px solid #1f2937; display: flex; align-items: center; gap: 12px; }
-        .header-logo { width: 40px; height: 40px; background-color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 20px; font-weight: bold; }
-        .header-title-box { text-align: left; }
-        .header-title { font-size: 16px; font-weight: bold; color: #fff; margin: 0; }
-        .header-subtitle { font-size: 12px; color: var(--text-muted); margin: 2px 0 0 0; }
-        .hero-banner { text-align: center; padding: 40px 20px; background: radial-gradient(circle at center, #1e1b4b 0%, var(--bg-main) 100%); }
-        .hero-title { font-size: 32px; font-weight: 800; margin: 10px 0; color: #fff; }
-        .hero-desc { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.5; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--bg-card); border-radius: 16px; border: 1px solid #1f2937; padding: 20px; display: flex; flex-direction: column; }
-        .price-current { color: var(--accent); font-size: 26px; font-weight: 700; margin: 10px 0; }
-        .order-now-btn { background: var(--accent); color: #000; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: auto; }
-        .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: flex-end; justify-content: center; }
-        .modal-content { background: #16171d; border-top-left-radius: 24px; border-top-right-radius: 24px; width: 100%; max-width: 550px; padding: 25px; box-sizing: border-box; border-top: 1px solid #2d3139; max-height: 90vh; overflow-y: auto; }
-        input, textarea { width: 100%; padding: 14px; margin-bottom: 16px; background: #0a0a0c; color: white; border: 1px solid #2d3139; border-radius: 10px; box-sizing: border-box; font-size: 14px; }
-        .receipt-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; box-sizing: border-box; text-decoration: none; box-shadow: 0 4px 12px rgba(180,83,9,0.2); }
-        .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 999999; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        :root { --bg-deep: #030408; --bg-surface: #0a0d1a; --gold-glow: #f59e0b; --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); --text-light: #f8fafc; --text-gray: #64748b; --neon-blue: #0ea5e9; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; background-color: var(--bg-deep); color: var(--text-light); -webkit-font-smoothing: antialiased; }
+        header { background: #0a0d1a; padding: 20px; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .mall-logo { width: 45px; height: 40px; background: rgba(251,191,36,0.1); border: 1px solid var(--gold-glow); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--gold-glow); font-size: 20px; box-shadow: 0 0 15px rgba(251,191,36,0.2); }
+        header h1 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: 0.5px; color: #fff; text-transform: uppercase; }
+        header p { margin: 2px 0 0 0; font-size: 11px; color: var(--text-gray); }
+        .header-cart-status { background: rgba(14,165,233,0.1); border: 1px solid var(--neon-blue); padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; color: var(--neon-blue); display: flex; align-items: center; gap: 8px; }
+        .category-nav { display: flex; gap: 10px; padding: 15px 20px; overflow-x: auto; background: #030408; border-bottom: 1px solid #111827; }
+        .nav-tag { background: #0a0d1a; border: 1px solid #1e293b; color: var(--text-gray); padding: 6px 14px; border-radius: 30px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; }
+        .nav-tag.active { background: var(--gold-gradient); color: #000; border: none; font-weight: 700; box-shadow: 0 4px 12px rgba(245,158,11,0.3); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 30px; }
+        .card { background: var(--bg-surface); border-radius: 24px; border: 1px solid #1e293b; padding: 20px; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .card:hover { transform: translateY(-8px); border-color: rgba(251,191,36,0.5); box-shadow: 0 20px 40px rgba(251,191,36,0.12); }
+        .card .stock-tag { position: absolute; top: 18px; left: 20px; background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.2); padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-icon-box { width: 100%; height: 160px; background: #030408; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; border: 1px solid #141b2d; }
+        .card-icon-box i { font-size: 50px; color: #1e293b; transition: color 0.3s; }
+        .card:hover .card-icon-box i { color: var(--gold-glow); }
+        .card h3 { margin: 0; font-size: 20px; font-weight: 700; color: #fff; text-align: left; }
+        .card p.desc { margin: 8px 0 0 0; font-size: 13px; color: var(--text-gray); line-height: 1.4; text-align: left; height: 36px; overflow: hidden; }
+        .card .pricing-row { display: flex; align-items: baseline; gap: 10px; margin: 15px 0; }
+        .card .price-now { color: var(--gold-glow); font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+        .card .price-was { color: #475569; font-size: 15px; text-decoration: line-through; }
+        .card .purchase-btn { background: var(--gold-gradient); color: #000; border: none; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 800; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(217,119,6,0.2); }
+        .checkout-drawer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; align-items: flex-end; justify-content: center; }
+        .drawer-content { background: #060813; border-top-left-radius: 32px; border-top-right-radius: 32px; width: 100%; max-width: 520px; padding: 30px; box-sizing: border-box; border-top: 1px solid #1e293b; max-height: 85vh; overflow-y: auto; }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .drawer-title { font-size: 20px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .drawer-close { font-size: 24px; color: var(--text-gray); cursor: pointer; }
+        .item-preview { background: var(--bg-surface); border-radius: 16px; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #141b2d; margin-bottom: 25px; }
+        .preview-title { font-weight: 700; color: #fff; font-size: 16px; }
+        .preview-cost { color: var(--gold-glow); font-size: 16px; font-weight: 800; margin-top: 3px; }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 16px; background: #030408; color: white; border: 1px solid #141b2d; border-radius: 14px; box-sizing: border-box; font-size: 14px; font-family: sans-serif; }
+        input:focus, textarea:focus { border-color: var(--gold-glow); outline: none; }
+        .drawer-total { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; margin: 25px 0; border-top: 1px solid #141b2d; padding-top: 20px; }
+        .submit-invoice-btn { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; border: none; padding: 16px; width: 100%; border-radius: 14px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; text-decoration: none; box-shadow: 0 4px 20px rgba(22,163,74,0.4); }
+        .floating-whatsapp { position: fixed; bottom: 25px; right: 25px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 999999; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-logo"><i class="fa fa-shopping-bag"></i></div>
-        <div class="header-title-box"><h1 class="header-title">Farhan Premium Store</h1><p class="header-subtitle">Premium electronics & essentials</p></div>
+        <div class="header-brand"><div class="mall-logo"><i class="fa fa-flash"></i></div><div><h1>Farhan Ultra Mall</h1><p>Luxurious Store Concept v4.0</p></div></div>
+        <div class="header-cart-status"><i class="fa fa-shopping-basket"></i> Basket: Rs. <span id="basket-amt">0</span></div>
     </header>
-    <section class="hero-banner">
-        <h2 class="hero-title">Shop premium, order in seconds</h2>
-        <p class="hero-desc">Confirm instantly on WhatsApp with an auto-generated receipt.</p>
-    </section>
-    <div class="container"><div class="grid" id="catalog-holder"></div></div>
-    
-    <div class="checkout-modal" id="receiptModal">
-        <div class="modal-content">
-            <h3 id="modal-name" style="color:#fff; margin-top:0;">Checkout</h3>
-            <form onsubmit="dispatchInvoice(event); return false;">
-                <input type="text" id="c-name" required placeholder="Full name (e.g. Ali Khan)">
-                <input type="tel" id="c-phone" required placeholder="Phone number (e.g. 0300 1234567)">
-                <textarea id="c-addr" rows="2" required placeholder="House, street, city"></textarea>
-                <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:bold;"><span>Total</span><span style="color:var(--accent);" id="modal-total">Rs. 1,000</span></div>
-                
-                <button type="submit" id="submit-receipt-trigger" class="receipt-btn">Confirm Order on WhatsApp 🚀</button>
+    <div class="category-nav"><span class="nav-tag active">All Premium Items</span><span class="nav-tag">Smartphones</span><span class="nav-tag">Luxury Laptops</span><span class="nav-tag">Audio Sound</span><span class="nav-tag">Wearables</span></div>
+    <div class="container"><div class="grid" id="luxury-catalog"></div></div>
+    <div class="checkout-modal" id="orderDrawer">
+        <div class="drawer-content">
+            <div class="drawer-header"><h3 class="drawer-title">Secure Checkout</h3><span class="drawer-close" onclick="closeDrawer()"><i class="fa fa-times-circle-o"></i></span></div>
+            <div class="item-preview">
+                <div style="text-align:left;"><div id="target-name" class="preview-title">Cloth</div><div id="target-price" class="preview-cost">Rs. 1,000</div></div>
+                <div style="font-size: 13px; color: var(--gold-glow); font-weight: bold; background: rgba(251,191,36,0.08); padding: 4px 10px; border-radius: 6px;">Qty: 1x</div>
+            </div>
+            <form onsubmit="executeOrder(event); return false;">
+                <input type="text" id="client-name" required placeholder="Customer Full Name...">
+                <input type="tel" id="client-phone" required placeholder="WhatsApp Contact Number...">
+                <textarea id="client-addr" rows="2" required placeholder="Complete Delivery Address..."></textarea>
+                <div class="drawer-total"><span>Grand Total</span><span style="color: var(--gold-glow); font-size: 24px; font-weight: 800;">Rs. <span id="target-total">1,000</span></span></div>
+                <button type="submit" class="submit-invoice-btn"><i class="fa fa-whatsapp"></i> Place Order on WhatsApp</button>
             </form>
         </div>
     </div>
-
-    <!-- 🟢 FLOATING WHATSAPP CHAT BUTTON WITH AUTOMATIC VIP ENGLISH TEXT MESSAGING PIPELINE -->
     <a href="whatsapp://send?phone=923121545628&text=%2A%F0%9F%94%A5%20HELLO%20FARHAN%20PREMIUM%20STORE%21%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%8B%20I%20am%20visiting%20your%20online%20store%20and%20want%20to%20inquire%20about%20your%20premium%20products%20and%20latest%20deals.%20Please%20assist%20me.%20Thank%20you%21%20%F0%9F%99%8F" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
-
     <script>
-        const gadgets = ["Cloth Material", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
+        const inventory = ["Cloth", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Bass Earbuds"];
+        const icons = ["fa-scissors", "fa-mobile", "fa-laptop", "fa-clock-o", "fa-headphones"];
+        const descriptions = ["Premium quality cloth crafted for everyday luxury. Soft and durable.","Titanium design, ultimate processing speeds with pro camera systems modules.","Liquid retina high-fidelity luxury setup for advanced heavy workflows.","Full health active dashboard tracking structural digital neon mesh accessory.","Pure acoustic sound canceling bass configuration standard mapping tools."];
         let catalogHtml = "";
         for (let i = 1; i <= 100; i++) {
-            let name = gadgets[(i-1)%gadgets.length] + " (#" + i + ")";
-            let price = 25000 + (i * 1200);
-            if(i === 1) { name = "Cloth"; price = 1000; }
-            catalogHtml += `<div class="card">
-                <img src="https://unsplash.com" style="width:100%; height:180px; object-fit:cover; border-radius:10px;">
-                <h3 style="text-align:left; margin-top:15px;">${name}</h3>
-                <div class="price-current" style="text-align:left;">Rs. ${price.toLocaleString()}</div>
-                <button class="order-now-btn" onclick="triggerCheckout('${name}', ${price})">Order Now</button>
-            </div>`;
+            let idx = (i - 1) % inventory.length; let name = inventory[idx] + " (#" + i + ")"; let price = 25000 + (i * 1200); let oldPrice = price + 4500; let icon = icons[idx]; let desc = descriptions[idx];
+            if(i === 1) { name = "Cloth"; price = 1000; oldPrice = 1500; desc = "Premium quality cloth crafted for everyday luxury. Soft, durable, and finished to a flawless standard."; }
+            catalogHtml += `<div class="card"><span class="stock-tag">Live Stock</span><div class="card-icon-box"><i class="fa ${icon}"></i></div><h3>${name}</h3><p class="desc">${desc}</p><div class="pricing-row"><span class="price-now">Rs. ${price.toLocaleString()}</span><span class="price-was">Rs. ${oldPrice.toLocaleString()}</span></div><button class="purchase-btn" onclick="openDrawer('${name}', ${price})"><i class="fa fa-shopping-basket"></i> Order Now</button></div>`;
         }
-        document.getElementById('catalog-holder').innerHTML = catalogHtml;
-
-        let selectedItem = null;
-        function triggerCheckout(name, price) {
-            selectedItem = { name, price };
-            document.getElementById('modal-name').innerText = "Checkout: " + name;
-            document.getElementById('modal-total').innerText = "Rs. " + price.toLocaleString();
-            document.getElementById('receiptModal').style.display = 'flex';
+        document.getElementById('luxury-catalog').innerHTML = catalogHtml;
+        let activeProduct = null;
+        function openDrawer(name, price) {
+            activeProduct = { name, price };
+            document.getElementById('target-name').innerText = name;
+            document.getElementById('target-price').innerText = "Rs. " + price.toLocaleString();
+            document.getElementById('target-total').innerText = price.toLocaleString();
+            document.getElementById('basket-amt').innerText = price.toLocaleString();
+            document.getElementById('orderDrawer').style.display = 'flex';
         }
-
-        function dispatchInvoice(e) {
+        function closeDrawer() { document.getElementById('orderDrawer').style.display = 'none'; }
+        function executeOrder(e) {
             e.preventDefault();
-            let n = document.getElementById('c-name').value.trim();
-            let p = document.getElementById('c-phone').value.trim();
-            let a = document.getElementById('c-addr').value.trim();
-            
-            if (!n || !p || !a) return alert("Saari details bharein!");
-            
-            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let orderId = "FPS-";
-            for(let i=0; i<8; i++) { orderId += chars.charAt(Math.floor(Math.random() * chars.length)); }
-            
-            let d = new Date();
-            let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
-            let hours = d.getHours();
-            let mins = d.getMinutes();
-            let ampm = hours >= 12 ? 'pm' : 'am';
-            hours = hours % 12; hours = hours ? hours : 12;
-            mins = mins < 10 ? '0'+mins : mins;
-            let dateStr = d.getDate() + "-" + months[d.getMonth()] + "-" + d.getFullYear() + ", " + hours + ":" + mins + " " + ampm;
-            
-            let txt = '%2AFARHAN%20PREMIUM%20STORE%2A%0A' +
-                      '%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A' +
-                      '%F0%9F%93%A5%20%2AOrder%20Receipt%2A%0A' +
-                      '%2AOrder%20ID%3A%2A%20' + orderId + '%0A' +
-                      '%2ADate%3A%2A%20' + dateStr + '%0A%0A' +
-                      '%F0%9F%91%A4%20%2ACustomer%2A%0A' +
-                      '%2AName%3A%2A%20' + encodeURIComponent(n) + '%0A' +
-                      '%2APhone%3A%2A%20' + encodeURIComponent(p) + '%0A' +
-                      '%2AAddress%3A%2A%20' + encodeURIComponent(a) + '%0A%0A' +
-                      '%F0%9F%9B%8D%EF%B8%8F%20%2AOrder%20Details%2A%0A' +
-                      '' + encodeURIComponent(selectedItem.name) + '%0A' +
-                      'Rs.%20' + selectedItem.price.toLocaleString() + '%20%C3%97%201%0A' +
-                      '%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A' +
-                      '%2ATOTAL%3A%20Rs.%20' + selectedItem.price.toLocaleString() + '%2A%0A%0A' +
-                      'Please%20confirm%20my%20order.%20Thank%20you%21%20%F0%9F%99%8F';
-            
-            let nativeAppUrl = 'whatsapp://send?phone=923121545628&text=' + txt;
-            window.location.href = nativeAppUrl;
+            let cName = document.getElementById('client-name').value.trim();
+            let cPhone = document.getElementById('client-phone').value.trim();
+            let cAddr = document.getElementById('client-addr').value.trim();
+            if (!cName || !cPhone || !cAddr) return alert("Please fill all fields completely!");
+            let pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; let orderToken = "FPS-";
+            for(let i=0; i<8; i++) { orderToken += pool.charAt(Math.floor(Math.random() * pool.length)); }
+            let d = new Date(); let monthArray = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+            let hr = d.getHours(); let mn = d.getMinutes(); let format = hr >= 12 ? 'pm' : 'am';
+            hr = hr % 12; hr = hr ? hr : 12; mn = mn < 10 ? '0' + mn : mn;
+            let fullTimestamp = d.getDate() + "-" + monthArray[d.getMonth()] + "-" + d.getFullYear() + ", " + hr + ":" + mn + " " + format;
+            let txtInvoice = '%2A%E2%9C%A8%20FARHAN%20PREMIUM%20STORE%20%E2%9C%A8%2A%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%F0%9F%93%A5%20%2AOrder%20Receipt%2A%0A%E2%99%A6%EF%B8%8F%20%2AOrder%20ID%3A%2A%20' + orderToken + '%0A%E2%99%A6%EF%B8%8F%20%2ADate%3A%2A%20' + fullTimestamp + '%0A%0A%F0%9F%91%A4%20%2ACustomer%2A%0A%E2%96%AB%EF%B8%8F%20%2AName%3A%2A%20' + encodeURIComponent(cName) + '%0A%E2%96%AB%EF%B8%8F%20%2APhone%3A%2A%20' + encodeURIComponent(cPhone) + '%0A%E2%96%AB%EF%B8%8F%20%2AAddress%3A%2A%20' + encodeURIComponent(cAddr) + '%0A%0A%F0%9F%9B%8D%EF%B8%8F%20%2AOrder%20Details%2A%0A%F0%9F%94%B8%20' + encodeURIComponent(activeProduct.name) + '%0A%F0%9F%92%B0%20Rs.%20' + activeProduct.price.toLocaleString() + '%20%C3%97%201%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%2A%F0%9F%92%B5%20TOTAL%3A%20Rs.%20' + activeProduct.price.toLocaleString() + '%2A%0A%0APlease%20confirm%20my%20order.%20Thank%20you%21%20%F0%9F%99%8F';
+            window.location.href = 'whatsapp://send?phone=923121545628&text=' + txtInvoice;
         }
     </script>
 </body>
