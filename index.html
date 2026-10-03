@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farhan Premium Store</title>
-    <!-- Official Font Awesome Icon Library -->
+    <!-- Official Font Awesome Icon Font Framework Library -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
@@ -32,8 +32,13 @@
         .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: flex-end; justify-content: center; }
         .modal-content { background: #16171d; border-top-left-radius: 24px; border-top-right-radius: 24px; width: 100%; max-width: 550px; padding: 25px; box-sizing: border-box; border-top: 1px solid #2d3139; max-height: 90vh; overflow-y: auto; }
         input, textarea { width: 100%; padding: 14px; margin-bottom: 16px; background: #0a0a0c; color: white; border: 1px solid #2d3139; border-radius: 10px; box-sizing: border-box; font-size: 14px; }
-        .receipt-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; text-decoration: none; }
-        .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 999999; text-decoration: none; }
+        
+        /* Unblockable Action Button Styles */
+        .receipt-action-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; box-sizing: border-box; }
+        .receipt-send-link { display: none; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 16px; font-weight: bold; text-transform: uppercase; text-align: center; text-decoration: none; box-sizing: border-box; box-shadow: 0 4px 15px rgba(34,197,94,0.4); }
+        
+        /* 🟢 Permanent Floating WhatsApp Chat Button Graphic element */
+        .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 999999; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     </style>
 </head>
 <body>
@@ -50,21 +55,26 @@
     <div class="checkout-modal" id="receiptModal">
         <div class="modal-content">
             <h3 id="modal-name" style="color:#fff; margin-top:0;">Checkout</h3>
-            <form onsubmit="return false;">
+            <form id="billing-form" onsubmit="return false;">
                 <input type="text" id="c-name" required placeholder="Full name (e.g. Ali Khan)">
                 <input type="tel" id="c-phone" required placeholder="Phone number (e.g. 0300 1234567)">
                 <textarea id="c-addr" rows="2" required placeholder="House, street, city"></textarea>
                 <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:bold;"><span>Total</span><span style="color:var(--accent);" id="modal-total">Rs. 1,000</span></div>
-                <a href="#" id="submit-receipt-trigger" class="receipt-btn" onclick="dispatchInvoice(event)">Generate Receipt</a>
+                
+                <!-- Step 1 Button: Compiles content data parameters safely -->
+                <button type="button" id="action-trigger-btn" class="receipt-action-btn" onclick="buildUnblockableInvoice()">Generate Receipt</button>
+                
+                <!-- Step 2 Button: Absolute 100% unblockable real standard direct redirect link target -->
+                <a href="#" id="final-whatsapp-anchor" class="receipt-send-link" target="_blank"><i class="fa fa-whatsapp"></i> Confirm Order on WhatsApp 🚀</a>
             </form>
         </div>
     </div>
 
-    <!-- 🟢 FIXED FLOATING WHATSAPP CHAT BUTTON LINK DIRECT TO FARHAN BHAI -->
+    <!-- 🟢 FLOATING SHORTCUT DIRECT TO FARHAN BHAI CHAT WINDOW -->
     <a href="https://wa.me" class="floating-whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a>
 
     <script>
-        const gadgets = ["iPhone 15 Pro Max", "Samsung Galaxy S24 Ultra", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
+        const gadgets = ["Cloth Material", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
         let catalogHtml = "";
         for (let i = 1; i <= 100; i++) {
             let name = gadgets[(i-1)%gadgets.length] + " (#" + i + ")";
@@ -83,25 +93,44 @@
             selectedItem = { name, price };
             document.getElementById('modal-name').innerText = "Checkout: " + name;
             document.getElementById('modal-total').innerText = "Rs. " + price.toLocaleString();
+            
+            // Reset view fields states
+            document.getElementById('action-trigger-btn').style.display = 'block';
+            document.getElementById('final-whatsapp-anchor').style.display = 'none';
+            
             document.getElementById('receiptModal').style.display = 'flex';
         }
 
-        function dispatchInvoice(e) {
+        function buildUnblockableInvoice() {
             let n = document.getElementById('c-name').value.trim();
             let p = document.getElementById('c-phone').value.trim();
             let a = document.getElementById('c-addr').value.trim();
-            if (!n || !p || !a) return alert("Saari details bharein!");
+            if (!n || !p || !a) {
+                alert("Farhan bhai, pehle customer details ki saari lines mukammal bharein!");
+                return;
+            }
             
-            let txt = '*🔥 NEW FARHAN STORE ORDER!*%0A%0A' +
-                      '*Name:* ' + encodeURIComponent(n) + '%0A' +
-                      '*Phone:* ' + encodeURIComponent(p) + '%0A' +
-                      '*Address:* ' + encodeURIComponent(a) + '%0A' +
-                      '*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A' +
-                      '*Total Amount:* Rs. ' + selectedItem.price.toLocaleString();
+            // Clean structured receipt invoice text generation mapping
+            let invoiceData = '*🔥 NEW FARHAN PREMIUM STORE ORDER!*%0A%0A' +
+                              '*👤 CUSTOMER INVENTORY DETAILS:*%0A' +
+                              '*Name:* ' + encodeURIComponent(n) + '%0A' +
+                              '*Phone:* ' + encodeURIComponent(p) + '%0A' +
+                              '*Address:* ' + encodeURIComponent(a) + '%0A%0A' +
+                              '*📦 SELECTED GADGET:*%0A' + encodeURIComponent(selectedItem.name) + '%0A%0A' +
+                              '*💰 TOTAL BILL AMOUNT:* Rs. ' + selectedItem.price.toLocaleString();
             
-            let url = 'https://wa.me?text=' + txt;
-            document.getElementById('submit-receipt-trigger').href = url;
-            window.open(url, '_blank');
+            // Direct native API universal redirection link parsing standard
+            let finalNativeUrl = 'https://whatsapp.com' + invoiceData;
+            
+            // Map link object text fields safely to anchor targets elements
+            let anchorLink = document.getElementById('final-whatsapp-anchor');
+            anchorLink.href = finalNativeUrl;
+            
+            // Change button visibility view models state variables
+            document.getElementById('action-trigger-btn').style.display = 'none';
+            anchorLink.style.display = 'block';
+            
+            alert("✅ Receipt Generated! Ab niche bane sabz rang ke WhatsApp button par touch karein, order direct chala jaye ga!");
         }
     </script>
 </body>
