@@ -32,8 +32,6 @@
         .modal-content { background: #16171d; border-top-left-radius: 24px; border-top-right-radius: 24px; width: 100%; max-width: 550px; padding: 25px; box-sizing: border-box; border-top: 1px solid #2d3139; max-height: 90vh; overflow-y: auto; }
         input, textarea { width: 100%; padding: 14px; margin-bottom: 16px; background: #0a0a0c; color: white; border: 1px solid #2d3139; border-radius: 10px; box-sizing: border-box; font-size: 14px; }
         .receipt-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; box-sizing: border-box; text-decoration: none; box-shadow: 0 4px 12px rgba(180,83,9,0.2); }
-        
-        /* 🟢 Permanent Static Floating WhatsApp Action Style */
         .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 999999; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     </style>
 </head>
@@ -62,7 +60,7 @@
         </div>
     </div>
 
-    <!-- 🟢 FIXED FLOATING WHATSAPP CHAT BUTTON WITH AUTOMATIC ENGLISH TEXT LINE -->
+    <!-- 🟢 FLOATING WHATSAPP CHAT BUTTON WITH AUTOMATIC ENGLISH TEXT LINE -->
     <a href="whatsapp://send?phone=923121545628&text=Hello%20Farhan%20Premium%20Store%2C%20I%20want%20to%20inquire%20about%20a%20product%20or%20place%20an%20order%21" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
 
     <script>
@@ -71,6 +69,7 @@
         for (let i = 1; i <= 100; i++) {
             let name = gadgets[(i-1)%gadgets.length] + " (#" + i + ")";
             let price = 25000 + (i * 1200);
+            if(i === 1) { name = "Cloth"; price = 1000; } // Exact match for item 1 like your template
             catalogHtml += `<div class="card">
                 <img src="https://unsplash.com" style="width:100%; height:180px; object-fit:cover; border-radius:10px;">
                 <h3 style="text-align:left; margin-top:15px;">${name}</h3>
@@ -96,12 +95,37 @@
             
             if (!n || !p || !a) return alert("Saari details bharein!");
             
-            let txt = '*🔥 NEW FARHAN STORE ORDER!*%0A%0A' +
+            // Generate Random Dynamic Order ID like FPS-NVBAVII3
+            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let orderId = "FPS-";
+            for(let i=0; i<8; i++) { orderId += chars.charAt(Math.floor(Math.random() * chars.length)); }
+            
+            // Format Live Real-time Date and Time (e.g., 25-Sept-2026, 12:50 pm)
+            let d = new Date();
+            let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+            let hours = d.getHours();
+            let mins = d.getMinutes();
+            let ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12; hours = hours ? hours : 12;
+            mins = mins < 10 ? '0'+mins : mins;
+            let dateStr = d.getDate() + "-" + months[d.getMonth()] + "-" + d.getFullYear() + ", " + hours + ":" + mins + " " + ampm;
+            
+            // 🎯 EXACT HUBEHOO TEXT RECEIPT MAPPING FROM YOUR TEMPLATE WITH EMOJIS!
+            let txt = '*FARHAN PREMIUM STORE*%0A' +
+                      '━━━━━━━━━━━━━━━━━━%0A' +
+                      '📦 *Order Receipt*%0A' +
+                      '*Order ID:* ' + orderId + '%0A' +
+                      '*Date:* ' + dateStr + '%0A%0A' +
+                      '👤 *Customer*%0A' +
                       '*Name:* ' + encodeURIComponent(n) + '%0A' +
                       '*Phone:* ' + encodeURIComponent(p) + '%0A' +
-                      '*Address:* ' + encodeURIComponent(a) + '%0A' +
-                      '*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A' +
-                      '*Total:* Rs. ' + selectedItem.price.toLocaleString();
+                      '*Address:* ' + encodeURIComponent(a) + '%0A%0A' +
+                      '🛍️ *Order Details*%0A' +
+                      '' + encodeURIComponent(selectedItem.name) + '%0A' +
+                      'Rs. ' + selectedItem.price.toLocaleString() + ' × 1%0A' +
+                      '━━━━━━━━━━━━━━━━━━%0A' +
+                      '*TOTAL: Rs. ' + selectedItem.price.toLocaleString() + '*%0A%0A' +
+                      'Please confirm my order. Thank you! 🙏';
             
             let nativeAppUrl = 'whatsapp://send?phone=923121545628&text=' + txt;
             window.location.href = nativeAppUrl;
