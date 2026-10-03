@@ -7,13 +7,9 @@
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
-            --bg-deep: #030408;
-            --bg-surface: #0a0d1a;
-            --gold-glow: #f59e0b;
+            --bg-deep: #030408; --bg-surface: #0a0d1a; --gold-glow: #f59e0b;
             --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            --text-light: #f8fafc;
-            --text-gray: #64748b;
-            --neon-blue: #0ea5e9;
+            --text-light: #f8fafc; --text-gray: #64748b; --neon-blue: #0ea5e9;
         }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; background-color: var(--bg-deep); color: var(--text-light); -webkit-font-smoothing: antialiased; }
         header { background: #0a0d1a; padding: 20px; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); }
@@ -39,18 +35,16 @@
         .card .price-now { color: var(--gold-glow); font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
         .card .price-was { color: #475569; font-size: 15px; text-decoration: line-through; }
         .card .purchase-btn { background: var(--gold-gradient); color: #000; border: none; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 800; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(217,119,6,0.2); }
-        .checkout-drawer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; }
-        .drawer-content { background: #060813; border-radius: 28px; width: 90%; max-width: 500px; padding: 25px; box-sizing: border-box; border: 1px solid #1e293b; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .drawer-title { font-size: 20px; font-weight: 800; color: #fff; text-transform: uppercase; }
-        .drawer-close { font-size: 24px; color: var(--text-gray); cursor: pointer; }
-        .item-preview { background: var(--bg-surface); border-radius: 16px; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #141b2d; margin-bottom: 20px; }
-        .preview-title { font-weight: 700; color: #fff; font-size: 16px; }
-        .preview-cost { color: var(--gold-glow); font-size: 16px; font-weight: 800; margin-top: 3px; }
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 16px; background: #030408; color: white; border: 1px solid #141b2d; border-radius: 14px; box-sizing: border-box; font-size: 14px; font-family: sans-serif; }
+        .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; }
+        .drawer-content { background: #060813; border-radius: 28px; width: 92%; max-width: 480px; padding: 25px; box-sizing: border-box; border: 1px solid #1e293b; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .drawer-title { font-size: 18px; font-weight: 800; color: #fff; text-transform: uppercase; }
+        .drawer-close { font-size: 22px; color: var(--text-gray); cursor: pointer; }
+        .receipt-container-box { background: #111424; border: 1px dashed var(--gold-glow); border-radius: 14px; padding: 20px; font-family: monospace; font-size: 13px; color: #f8fafc; line-height: 1.5; margin-bottom: 20px; text-align: left; }
+        .receipt-line { border-bottom: 1px dashed #242c42; margin: 10px 0; }
+        input, textarea { width: 100%; padding: 12px 14px; margin-bottom: 12px; background: #030408; color: white; border: 1px solid #1e293b; border-radius: 10px; box-sizing: border-box; font-size: 13px; font-family: sans-serif; }
         input:focus, textarea:focus { border-color: var(--gold-glow); outline: none; }
-        .drawer-total { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; margin: 25px 0; border-top: 1px solid #141b2d; padding-top: 20px; }
-        .submit-invoice-btn { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; border: none; padding: 16px; width: 100%; border-radius: 14px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; text-decoration: none; box-shadow: 0 4px 20px rgba(22,163,74,0.4); }
+        .submit-invoice-btn { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; text-align: center; display: block; text-decoration: none; box-shadow: 0 4px 20px rgba(22,163,74,0.4); }
         .floating-whatsapp { position: fixed; bottom: 25px; right: 25px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 999999; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
     </style>
 </head>
@@ -63,17 +57,31 @@
     <div class="container"><div class="grid" id="luxury-catalog"></div></div>
     <div class="checkout-modal" id="orderDrawer">
         <div class="drawer-content">
-            <div class="drawer-header"><h3 class="drawer-title">Secure Checkout</h3><span class="drawer-close" onclick="closeDrawer()"><i class="fa fa-times-circle-o"></i></span></div>
-            <div class="item-preview">
-                <div style="text-align:left;"><div id="target-name" class="preview-title">Cloth</div><div id="target-price" class="preview-cost">Rs. 1,000</div></div>
-                <div style="font-size: 13px; color: var(--gold-glow); font-weight: bold; background: rgba(251,191,36,0.08); padding: 4px 10px; border-radius: 6px;">Qty: 1x</div>
+            <div class="drawer-header"><h3 class="drawer-title">Verify Order Receipt</h3><span class="drawer-close" onclick="closeDrawer()"><i class="fa fa-times-circle-o"></i></span></div>
+            <div class="receipt-container-box">
+                <div style="text-align: center; font-weight: bold; font-size: 15px; color: var(--gold-glow);">*FARHAN PREMIUM STORE*</div>
+                <div class="receipt-line"></div>
+                <div>📦 <b>Order Receipt</b></div>
+                <div><strong>Order ID:</strong> <span id="r-token" style="color:var(--neon-blue);">FPS-XXXXXX</span></div>
+                <div><strong>Date:</strong> <span id="r-date">Loading...</span></div>
+                <div class="receipt-line"></div>
+                <div>👤 <b>Customer</b></div>
+                <div><strong>Name:</strong> <span id="r-name" style="color:#fbbf24;">(Bharien...)</span></div>
+                <div><strong>Phone:</strong> <span id="r-phone">(Bharien...)</span></div>
+                <div><strong>Address:</strong> <span id="r-addr">(Bharien...)</span></div>
+                <div class="receipt-line"></div>
+                <div>🛍️ <b>Order Details</b></div>
+                <div id="r-pname" style="font-weight:bold;">Cloth</div>
+                <div>Rs. <span id="r-price">1,000</span> × 1</div>
+                <div class="receipt-line"></div>
+                <div style="font-size:15px; font-weight:bold;">*TOTAL: Rs. <span id="r-total" style="color:var(--gold-glow);">1,000</span>*</div>
+                <div style="margin-top:10px; font-style:italic; color:var(--text-gray);">Please confirm my order. Thank you! 🙏</div>
             </div>
             <form onsubmit="executeOrder(event); return false;">
-                <input type="text" id="client-name" required placeholder="Customer Full Name...">
-                <input type="tel" id="client-phone" required placeholder="WhatsApp Contact Number...">
-                <textarea id="client-addr" rows="2" required placeholder="Complete Delivery Address..."></textarea>
-                <div class="drawer-total"><span>Grand Total</span><span style="color: var(--gold-glow); font-size: 24px; font-weight: 800;">Rs. <span id="target-total">1,000</span></span></div>
-                <button type="submit" class="submit-invoice-btn"><i class="fa fa-whatsapp"></i> Place Order on WhatsApp</button>
+                <input type="text" id="client-name" required placeholder="Type Customer Name here..." oninput="updateLiveReceipt()">
+                <input type="tel" id="client-phone" required placeholder="Type Customer Phone Number..." oninput="updateLiveReceipt()">
+                <textarea id="client-addr" rows="2" required placeholder="Type Complete Delivery Address here..." oninput="updateLiveReceipt()"></textarea>
+                <button type="submit" class="submit-invoice-btn"><i class="fa fa-whatsapp"></i> Confirm Order on WhatsApp 🚀</button>
             </form>
         </div>
     </div>
@@ -89,29 +97,41 @@
             catalogHtml += `<div class="card"><span class="stock-tag">Live Stock</span><div class="card-icon-box"><i class="fa ${icon}"></i></div><h3>${name}</h3><p class="desc">${desc}</p><div class="pricing-row"><span class="price-now">Rs. ${price.toLocaleString()}</span><span class="price-was">Rs. ${oldPrice.toLocaleString()}</span></div><button class="purchase-btn" onclick="openDrawer('${name}', ${price})"><i class="fa fa-shopping-basket"></i> Order Now</button></div>`;
         }
         document.getElementById('luxury-catalog').innerHTML = catalogHtml;
-        let activeProduct = null;
+        let activeProduct = null; let activeToken = ""; let activeTimestamp = "";
         function openDrawer(name, price) {
             activeProduct = { name, price };
-            document.getElementById('target-name').innerText = name;
-            document.getElementById('target-price').innerText = "Rs. " + price.toLocaleString();
-            document.getElementById('target-total').innerText = price.toLocaleString();
+            let pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; activeToken = "FPS-";
+            for(let i=0; i<8; i++) { activeToken += pool.charAt(Math.floor(Math.random() * pool.length)); }
+            let d = new Date(); let monthArray = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+            let hr = d.getHours(); let mn = d.getMinutes(); let format = hr >= 12 ? 'pm' : 'am';
+            hr = hr % 12; hr = hr ? hr : 12; mn = mn < 10 ? '0' + mn : mn;
+            activeTimestamp = d.getDate() + "-" + monthArray[d.getMonth()] + "-" + d.getFullYear() + ", " + hr + ":" + mn + " " + format;
+            document.getElementById('r-token').innerText = activeToken;
+            document.getElementById('r-date').innerText = activeTimestamp;
+            document.getElementById('r-pname').innerText = name;
+            document.getElementById('r-price').innerText = price.toLocaleString();
+            document.getElementById('r-total').innerText = price.toLocaleString();
             document.getElementById('basket-amt').innerText = price.toLocaleString();
+            document.getElementById('client-name').value = ""; document.getElementById('client-phone').value = ""; document.getElementById('client-addr').value = "";
+            document.getElementById('r-name').innerText = "(Bharien...)"; document.getElementById('r-phone').innerText = "(Bharien...)"; document.getElementById('r-addr').innerText = "(Bharien...)";
             document.getElementById('orderDrawer').style.display = 'flex';
         }
         function closeDrawer() { document.getElementById('orderDrawer').style.display = 'none'; }
+        function updateLiveReceipt() {
+            let n = document.getElementById('client-name').value.trim();
+            let p = document.getElementById('client-phone').value.trim();
+            let a = document.getElementById('client-addr').value.trim();
+            document.getElementById('r-name').innerText = n ? n : "(Bharien...)";
+            document.getElementById('r-phone').innerText = p ? p : "(Bharien...)";
+            document.getElementById('r-addr').innerText = a ? a : "(Bharien...)";
+        }
         function executeOrder(e) {
             e.preventDefault();
             let cName = document.getElementById('client-name').value.trim();
             let cPhone = document.getElementById('client-phone').value.trim();
             let cAddr = document.getElementById('client-addr').value.trim();
             if (!cName || !cPhone || !cAddr) return alert("Please fill all fields completely!");
-            let pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; let orderToken = "FPS-";
-            for(let i=0; i<8; i++) { orderToken += pool.charAt(Math.floor(Math.random() * pool.length)); }
-            let d = new Date(); let monthArray = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
-            let hr = d.getHours(); let mn = d.getMinutes(); let format = hr >= 12 ? 'pm' : 'am';
-            hr = hr % 12; hr = hr ? hr : 12; mn = mn < 10 ? '0' + mn : mn;
-            let fullTimestamp = d.getDate() + "-" + monthArray[d.getMonth()] + "-" + d.getFullYear() + ", " + hr + ":" + mn + " " + format;
-            let txtInvoice = '%2A%E2%9C%A8%20FARHAN%20PREMIUM%20STORE%20%E2%9C%A8%2A%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%F0%9F%93%A5%20%2AOrder%20Receipt%2A%0A%E2%99%A6%EF%B8%8F%20%2AOrder%20ID%3A%2A%20' + orderToken + '%0A%E2%99%A6%EF%B8%8F%20%2ADate%3A%2A%20' + fullTimestamp + '%0A%0A%F0%9F%91%A4%20%2ACustomer%2A%0A%E2%96%AB%EF%B8%8F%20%2AName%3A%2A%20' + encodeURIComponent(cName) + '%0A%E2%96%AB%EF%B8%8F%20%2APhone%3A%2A%20' + encodeURIComponent(cPhone) + '%0A%E2%96%AB%EF%B8%8F%20%2AAddress%3A%2A%20' + encodeURIComponent(cAddr) + '%0A%0A%F0%9F%9B%8D%EF%B8%8F%20%2AOrder%20Details%2A%0A%F0%9F%94%B8%20' + encodeURIComponent(activeProduct.name) + '%0A%F0%9F%92%B0%20Rs.%20' + activeProduct.price.toLocaleString() + '%20%C3%97%201%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%2A%F0%9F%92%B5%20TOTAL%3A%20Rs.%20' + activeProduct.price.toLocaleString() + '%2A%0A%0APlease%20confirm%20my%20order.%20Thank%20you%21%20%F0%9F%99%8F';
+            let txtInvoice = '%2A%E2%9C%A8%20FARHAN%20PREMIUM%20STORE%20%E2%9C%A8%2A%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%F0%9F%93%A5%20%2AOrder%20Receipt%2A%0A%E2%99%A6%EF%B8%8F%20%2AOrder%20ID%3A%2A%20' + activeToken + '%0A%E2%99%A6%EF%B8%8F%20%2ADate%3A%2A%20' + activeTimestamp + '%0A%0A%F0%9F%91%A4%20%2ACustomer%2A%0A%E2%96%AB%EF%B8%8F%20%2AName%3A%2A%20' + encodeURIComponent(cName) + '%0A%E2%96%AB%EF%B8%8F%20%2APhone%3A%2A%20' + encodeURIComponent(cPhone) + '%0A%E2%96%AB%EF%B8%8F%20%2AAddress%3A%2A%20' + encodeURIComponent(cAddr) + '%0A%0A%F0%9F%9B%8D%EF%B8%8F%20%2AOrder%20Details%2A%0A%F0%9F%94%B8%20' + encodeURIComponent(activeProduct.name) + '%0A%F0%9F%92%B0%20Rs.%20' + activeProduct.price.toLocaleString() + '%20%C3%97%201%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%2A%F0%9F%92%B5%20TOTAL%3A%20Rs.%20' + activeProduct.price.toLocaleString() + '%2A%0A%0APlease%20confirm%20my%20order.%20Thank%20you%21%20%F0%9F%99%8F';
             window.location.href = 'whatsapp://send?phone=923121545628&text=' + txtInvoice;
         }
     </script>
