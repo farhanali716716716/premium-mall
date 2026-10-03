@@ -62,8 +62,8 @@
         </div>
     </div>
 
-    <!-- 🟢 FIXED NATIVE APPLICATION INTERACTION LINK - NO MORE QUESTIONS -->
-    <a href="whatsapp://send?phone=923121545628" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
+    <!-- 🟢 FIXED FLOATING WHATSAPP CHAT BUTTON WITH AUTOMATIC ENGLISH TEXT LINE -->
+    <a href="whatsapp://send?phone=923121545628&text=Hello%20Farhan%20Premium%20Store%2C%20I%20want%20to%20inquire%20about%20a%20product%20or%20place%20an%20order%21" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
 
     <script>
         const gadgets = ["Cloth Material", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
@@ -103,7 +103,6 @@
                       '*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A' +
                       '*Total:* Rs. ' + selectedItem.price.toLocaleString();
             
-            // 🚀 The Absolute Master Protocol Bypass (Forces Native App to Open Target Chat Directly)
             let nativeAppUrl = 'whatsapp://send?phone=923121545628&text=' + txt;
             window.location.href = nativeAppUrl;
         }
