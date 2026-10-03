@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farhan Premium Store</title>
-    <!-- Font Awesome Icon Library Framework -->
+    <!-- Official Font Awesome Icon Library Framework -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
@@ -31,8 +31,6 @@
         .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: flex-end; justify-content: center; }
         .modal-content { background: #16171d; border-top-left-radius: 24px; border-top-right-radius: 24px; width: 100%; max-width: 550px; padding: 25px; box-sizing: border-box; border-top: 1px solid #2d3139; max-height: 90vh; overflow-y: auto; }
         input, textarea { width: 100%; padding: 14px; margin-bottom: 16px; background: #0a0a0c; color: white; border: 1px solid #2d3139; border-radius: 10px; box-sizing: border-box; font-size: 14px; }
-        
-        /* 100% Unblockable Native Anchor Button Setup */
         .receipt-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; box-sizing: border-box; text-decoration: none; box-shadow: 0 4px 12px rgba(180,83,9,0.2); }
         
         /* 🟢 Permanent Static Floating WhatsApp Action Style */
@@ -59,14 +57,13 @@
                 <textarea id="c-addr" rows="2" required placeholder="House, street, city"></textarea>
                 <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:bold;"><span>Total</span><span style="color:var(--accent);" id="modal-total">Rs. 1,000</span></div>
                 
-                <!-- 🎯 Changed to HTML standard Form Submit button to bypass any browser tracking filters -->
                 <button type="submit" id="submit-receipt-trigger" class="receipt-btn">Confirm Order on WhatsApp 🚀</button>
             </form>
         </div>
     </div>
 
-    <!-- 🟢 STATIC DIRECT CHANNEL FOR FLOATING INTERACTIVE bubble BUTTON -->
-    <a href="https://whatsapp.com" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
+    <!-- 🟢 FIXED NATIVE APPLICATION INTERACTION LINK - NO MORE QUESTIONS -->
+    <a href="whatsapp://send?phone=923121545628" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
 
     <script>
         const gadgets = ["Cloth Material", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
@@ -106,9 +103,9 @@
                       '*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A' +
                       '*Total:* Rs. ' + selectedItem.price.toLocaleString();
             
-            // 🚀 Main Bypass Trick: Direct window location standard switch to bypass browser popups blocker
-            let targetUrl = 'https://whatsapp.com&text=' + txt;
-            window.location.href = targetUrl;
+            // 🚀 The Absolute Master Protocol Bypass (Forces Native App to Open Target Chat Directly)
+            let nativeAppUrl = 'whatsapp://send?phone=923121545628&text=' + txt;
+            window.location.href = nativeAppUrl;
         }
     </script>
 </body>
