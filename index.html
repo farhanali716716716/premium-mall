@@ -33,11 +33,10 @@
         .modal-content { background: #16171d; border-top-left-radius: 24px; border-top-right-radius: 24px; width: 100%; max-width: 550px; padding: 25px; box-sizing: border-box; border-top: 1px solid #2d3139; max-height: 90vh; overflow-y: auto; }
         input, textarea { width: 100%; padding: 14px; margin-bottom: 16px; background: #0a0a0c; color: white; border: 1px solid #2d3139; border-radius: 10px; box-sizing: border-box; font-size: 14px; }
         
-        /* Unblockable Action Button Styles */
-        .receipt-action-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; box-sizing: border-box; }
-        .receipt-send-link { display: none; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 16px; font-weight: bold; text-transform: uppercase; text-align: center; text-decoration: none; box-sizing: border-box; box-shadow: 0 4px 15px rgba(34,197,94,0.4); }
+        /* Direct Same-Window Unblockable Button Link Styles */
+        .receipt-btn { background: #b45309; color: white; border: none; padding: 16px; width: 100%; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; text-align: center; display: block; box-sizing: border-box; text-decoration: none; box-shadow: 0 4px 12px rgba(180,83,9,0.2); }
         
-        /* 🟢 Permanent Floating WhatsApp Chat Button Graphic element */
+        /* 🟢 Permanent Floating WhatsApp Chat Button Style */
         .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 999999; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     </style>
 </head>
@@ -55,23 +54,20 @@
     <div class="checkout-modal" id="receiptModal">
         <div class="modal-content">
             <h3 id="modal-name" style="color:#fff; margin-top:0;">Checkout</h3>
-            <form id="billing-form" onsubmit="return false;">
+            <form onsubmit="return false;">
                 <input type="text" id="c-name" required placeholder="Full name (e.g. Ali Khan)">
                 <input type="tel" id="c-phone" required placeholder="Phone number (e.g. 0300 1234567)">
                 <textarea id="c-addr" rows="2" required placeholder="House, street, city"></textarea>
                 <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:bold;"><span>Total</span><span style="color:var(--accent);" id="modal-total">Rs. 1,000</span></div>
                 
-                <!-- Step 1 Button: Compiles content data parameters safely -->
-                <button type="button" id="action-trigger-btn" class="receipt-action-btn" onclick="buildUnblockableInvoice()">Generate Receipt</button>
-                
-                <!-- Step 2 Button: Absolute 100% unblockable real standard direct redirect link target -->
-                <a href="#" id="final-whatsapp-anchor" class="receipt-send-link" target="_blank"><i class="fa fa-whatsapp"></i> Confirm Order on WhatsApp 🚀</a>
+                <!-- 🎯 Direct Single-Window Pop-up Bypass Trigger -->
+                <a href="#" id="submit-receipt-trigger" class="receipt-btn" onclick="dispatchInvoice(event)">Confirm Order on WhatsApp 🚀</a>
             </form>
         </div>
     </div>
 
-    <!-- 🟢 FLOATING SHORTCUT DIRECT TO FARHAN BHAI CHAT WINDOW -->
-    <a href="https://wa.me" class="floating-whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a>
+    <!-- 🟢 FLOATING SHORTCUT DIRECTLY TARGETS THE SAME APP SYSTEM -->
+    <a href="https://wa.me" class="floating-whatsapp" target="_self"><i class="fa fa-whatsapp"></i></a>
 
     <script>
         const gadgets = ["Cloth Material", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
@@ -93,44 +89,28 @@
             selectedItem = { name, price };
             document.getElementById('modal-name').innerText = "Checkout: " + name;
             document.getElementById('modal-total').innerText = "Rs. " + price.toLocaleString();
-            
-            // Reset view fields states
-            document.getElementById('action-trigger-btn').style.display = 'block';
-            document.getElementById('final-whatsapp-anchor').style.display = 'none';
-            
             document.getElementById('receiptModal').style.display = 'flex';
         }
 
-        function buildUnblockableInvoice() {
+        function dispatchInvoice(e) {
             let n = document.getElementById('c-name').value.trim();
             let p = document.getElementById('c-phone').value.trim();
             let a = document.getElementById('c-addr').value.trim();
-            if (!n || !p || !a) {
-                alert("Farhan bhai, pehle customer details ki saari lines mukammal bharein!");
-                return;
-            }
+            if (!n || !p || !a) return alert("Saari details bharein!");
             
-            // Clean structured receipt invoice text generation mapping
-            let invoiceData = '*🔥 NEW FARHAN PREMIUM STORE ORDER!*%0A%0A' +
-                              '*👤 CUSTOMER INVENTORY DETAILS:*%0A' +
-                              '*Name:* ' + encodeURIComponent(n) + '%0A' +
-                              '*Phone:* ' + encodeURIComponent(p) + '%0A' +
-                              '*Address:* ' + encodeURIComponent(a) + '%0A%0A' +
-                              '*📦 SELECTED GADGET:*%0A' + encodeURIComponent(selectedItem.name) + '%0A%0A' +
-                              '*💰 TOTAL BILL AMOUNT:* Rs. ' + selectedItem.price.toLocaleString();
+            let txt = '*🔥 NEW FARHAN STORE ORDER!*%0A%0A' +
+                      '*Name:* ' + encodeURIComponent(n) + '%0A' +
+                      '*Phone:* ' + encodeURIComponent(p) + '%0A' +
+                      '*Address:* ' + encodeURIComponent(a) + '%0A' +
+                      '*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A' +
+                      '*Total:* Rs. ' + selectedItem.price.toLocaleString();
             
-            // Direct native API universal redirection link parsing standard
-            let finalNativeUrl = 'https://whatsapp.com' + invoiceData;
+            // Fixed Target to '_self' (Same Window redirect link framework) to bypass browser blocker
+            let url = 'https://wa.me?text=' + txt;
             
-            // Map link object text fields safely to anchor targets elements
-            let anchorLink = document.getElementById('final-whatsapp-anchor');
-            anchorLink.href = finalNativeUrl;
-            
-            // Change button visibility view models state variables
-            document.getElementById('action-trigger-btn').style.display = 'none';
-            anchorLink.style.display = 'block';
-            
-            alert("✅ Receipt Generated! Ab niche bane sabz rang ke WhatsApp button par touch karein, order direct chala jaye ga!");
+            let triggerBtn = document.getElementById('submit-receipt-trigger');
+            triggerBtn.href = url;
+            triggerBtn.target = '_self'; 
         }
     </script>
 </body>
