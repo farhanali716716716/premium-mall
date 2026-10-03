@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farhan Premium Store</title>
-    <!-- Font Awesome Link For Official Icons -->
+    <!-- Official Font Awesome Icon Library -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --bg-main: #0a0a0c;
             --bg-card: #111216;
             --accent: #f59e0b;
+            --accent-hover: #d97706;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
         }
@@ -22,7 +23,7 @@
         .header-subtitle { font-size: 12px; color: var(--text-muted); margin: 2px 0 0 0; }
         .hero-banner { text-align: center; padding: 40px 20px; background: radial-gradient(circle at center, #1e1b4b 0%, var(--bg-main) 100%); }
         .hero-title { font-size: 32px; font-weight: 800; margin: 10px 0; color: #fff; }
-        .hero-desc { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        .hero-desc { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.5; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .card { background: var(--bg-card); border-radius: 16px; border: 1px solid #1f2937; padding: 20px; display: flex; flex-direction: column; }
@@ -45,6 +46,7 @@
         <p class="hero-desc">Confirm instantly on WhatsApp with an auto-generated receipt.</p>
     </section>
     <div class="container"><div class="grid" id="catalog-holder"></div></div>
+    
     <div class="checkout-modal" id="receiptModal">
         <div class="modal-content">
             <h3 id="modal-name" style="color:#fff; margin-top:0;">Checkout</h3>
@@ -57,7 +59,10 @@
             </form>
         </div>
     </div>
+
+    <!-- 🟢 FIXED FLOATING WHATSAPP CHAT BUTTON LINK DIRECT TO FARHAN BHAI -->
     <a href="https://wa.me" class="floating-whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a>
+
     <script>
         const gadgets = ["iPhone 15 Pro Max", "Samsung Galaxy S24 Ultra", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Pro Earbuds"];
         let catalogHtml = "";
@@ -72,6 +77,7 @@
             </div>`;
         }
         document.getElementById('catalog-holder').innerHTML = catalogHtml;
+
         let selectedItem = null;
         function triggerCheckout(name, price) {
             selectedItem = { name, price };
@@ -79,12 +85,20 @@
             document.getElementById('modal-total').innerText = "Rs. " + price.toLocaleString();
             document.getElementById('receiptModal').style.display = 'flex';
         }
+
         function dispatchInvoice(e) {
             let n = document.getElementById('c-name').value.trim();
             let p = document.getElementById('c-phone').value.trim();
             let a = document.getElementById('c-addr').value.trim();
             if (!n || !p || !a) return alert("Saari details bharein!");
-            let txt = '*🔥 NEW ORDER!*%0A*Name:* ' + encodeURIComponent(n) + '%0A*Phone:* ' + encodeURIComponent(p) + '%0A*Address:* ' + encodeURIComponent(a) + '%0A*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A*Total:* Rs. ' + selectedItem.price.toLocaleString();
+            
+            let txt = '*🔥 NEW FARHAN STORE ORDER!*%0A%0A' +
+                      '*Name:* ' + encodeURIComponent(n) + '%0A' +
+                      '*Phone:* ' + encodeURIComponent(p) + '%0A' +
+                      '*Address:* ' + encodeURIComponent(a) + '%0A' +
+                      '*Product:* ' + encodeURIComponent(selectedItem.name) + '%0A' +
+                      '*Total Amount:* Rs. ' + selectedItem.price.toLocaleString();
+            
             let url = 'https://wa.me?text=' + txt;
             document.getElementById('submit-receipt-trigger').href = url;
             window.open(url, '_blank');
