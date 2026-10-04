@@ -26,9 +26,8 @@
         .card { background: var(--bg-surface); border-radius: 24px; border: 1px solid #1e293b; padding: 20px; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
         .card:hover { transform: translateY(-8px); border-color: rgba(251,191,36,0.5); box-shadow: 0 20px 40px rgba(251,191,36,0.12); }
         .card .stock-tag { position: absolute; top: 18px; left: 20px; background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.2); padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .card-icon-box { width: 100%; height: 160px; background: #030408; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; border: 1px solid #141b2d; }
-        .card-icon-box i { font-size: 50px; color: #1e293b; transition: color 0.3s; }
-        .card:hover .card-icon-box i { color: var(--gold-glow); }
+        .card-img-box { width: 100%; height: 180px; background: #030408; border-radius: 16px; overflow: hidden; margin-bottom: 18px; border: 1px solid #141b2d; }
+        .card-img-box img { width: 100%; height: 100%; object-fit: cover; }
         .card h3 { margin: 0; font-size: 20px; font-weight: 700; color: #fff; text-align: left; }
         .card p.desc { margin: 8px 0 0 0; font-size: 13px; color: var(--text-gray); line-height: 1.4; text-align: left; height: 36px; overflow: hidden; }
         .card .pricing-row { display: flex; align-items: baseline; gap: 10px; margin: 15px 0; }
@@ -45,7 +44,10 @@
         input, textarea { width: 100%; padding: 12px 14px; margin-bottom: 12px; background: #030408; color: white; border: 1px solid #1e293b; border-radius: 10px; box-sizing: border-box; font-size: 13px; font-family: sans-serif; }
         input:focus, textarea:focus { border-color: var(--gold-glow); outline: none; }
         .submit-invoice-btn { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; text-align: center; display: block; text-decoration: none; box-shadow: 0 4px 20px rgba(22,163,74,0.4); }
-        .floating-whatsapp { position: fixed; bottom: 25px; right: 25px; background-color: #10b981; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 999999; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        
+        /* 🟢 100% Fixed SVG Embedded Vector Background - Dunya Ka Koi Browser Logo Ni Kaat Sakta */
+        .floating-whatsapp { position: fixed; bottom: 25px; right: 25px; background-color: #10b981; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 999999; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .floating-whatsapp svg { width: 32px; height: 32px; fill: white; }
     </style>
 </head>
 <body>
@@ -85,20 +87,38 @@
             </form>
         </div>
     </div>
-    <a href="whatsapp://send?phone=923121545628&text=%2A%F0%9F%94%A5%20HELLO%20FARHAN%20PREMIUM%20STORE%21%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%8B%20I%20am%20visiting%20your%20online%20store%20and%20want%20to%20inquire%20about%20your%20premium%20products%20and%20latest%20deals.%20Please%20assist%20me.%20Thank%20you%21%20%F0%9F%99%8F" class="floating-whatsapp"><i class="fa fa-whatsapp"></i></a>
+    
+    <!-- 🎯 100% Inline Native SVG Protected Coding For WhatsApp Icon Box Layer -->
+    <a href="whatsapp://send?phone=923121545628&text=%2A%F0%9F%94%A5%20HELLO%20FARHAN%20PREMIUM%20STORE%21%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%8B%20I%20am%20visiting%20your%20online%20store%20and%20want%20to%20inquire%20about%20your%20premium%20products%20and%20latest%20deals.%20Please%20assist%20me.%20Thank%20you%21%20%F0%9F%99%8F" class="floating-whatsapp">
+        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-93.8-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 2.7 39.1 29.8 94.6 47 32.9 10.2 50.1 8.2 61.8 6.8 11.7-1.4 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </a>
     <script>
         const inventory = ["Cloth", "iPhone 15 Pro Max", "MacBook Pro M3", "Smartwatch Ultra 2", "Wireless Bass Earbuds"];
-        const icons = ["fa-scissors", "fa-mobile", "fa-laptop", "fa-clock-o", "fa-headphones"];
+        const prices =;
+        const oldPrices =;
+        const images = [
+            "https://unsplash.com",
+            "https://unsplash.com",
+            "https://unsplash.com",
+            "https://unsplash.com",
+            "https://unsplash.com"
+        ];
         const descriptions = ["Premium quality cloth crafted for everyday luxury. Soft and durable.","Titanium design, ultimate processing speeds with pro camera systems modules.","Liquid retina high-fidelity luxury setup for advanced heavy workflows.","Full health active dashboard tracking structural digital neon mesh accessory.","Pure acoustic sound canceling bass configuration standard mapping tools."];
+        
         let catalogHtml = "";
         for (let i = 1; i <= 100; i++) {
-            let idx = (i - 1) % inventory.length; let name = inventory[idx] + " (#" + i + ")"; let price = 25000 + (i * 1200); let oldPrice = price + 4500; let icon = icons[idx]; let desc = descriptions[idx];
-            if(i === 1) { name = "Cloth"; price = 1000; oldPrice = 1500; desc = "Premium quality cloth crafted for everyday luxury. Soft, durable, and finished to a flawless standard."; }
-            catalogHtml += `<div class="card"><span class="stock-tag">Live Stock</span><div class="card-icon-box"><i class="fa ${icon}"></i></div><h3>${name}</h3><p class="desc">${desc}</p><div class="pricing-row"><span class="price-now">Rs. ${price.toLocaleString()}</span><span class="price-was">Rs. ${oldPrice.toLocaleString()}</span></div><button class="purchase-btn" onclick="openDrawer('${name}', ${price})"><i class="fa fa-shopping-basket"></i> Order Now</button></div>`;
+            let idx = (i - 1) % inventory.length; 
+            let name = inventory[idx] + " (#" + i + ")"; 
+            let price = prices[idx]; 
+            let oldPrice = oldPrices[idx]; 
+            let imgUrl = images[idx];
+            let desc = descriptions[idx];
+            
+            catalogHtml += `<div class="card"><span class="stock-tag">Live Stock</span><div class="card-img-box"><img src="${imgUrl}"></div><h3>${name}</h3><p class="desc">${desc}</p><div class="pricing-row"><span class="price-now">Rs. ${price.toLocaleString()}</span><span class="price-was">Rs. ${oldPrice.toLocaleString()}</span></div><button class="purchase-btn" onclick="openDrawer('${name}', ${price}, '${imgUrl}')"><i class="fa fa-shopping-basket"></i> Order Now</button></div>`;
         }
         document.getElementById('luxury-catalog').innerHTML = catalogHtml;
         let activeProduct = null; let activeToken = ""; let activeTimestamp = "";
-        function openDrawer(name, price) {
+        function openDrawer(name, price, img) {
             activeProduct = { name, price };
             let pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; activeToken = "FPS-";
             for(let i=0; i<8; i++) { activeToken += pool.charAt(Math.floor(Math.random() * pool.length)); }
@@ -121,9 +141,9 @@
             let n = document.getElementById('client-name').value.trim();
             let p = document.getElementById('client-phone').value.trim();
             let a = document.getElementById('client-addr').value.trim();
-            document.getElementById('r-name').innerText = n ? n : "(enter the name...)";
-            document.getElementById('r-phone').innerText = p ? p : "(Enter phone number...)";
-            document.getElementById('r-addr').innerText = a ? a : "(Enter address...)";
+            document.getElementById('r-name').innerText = n ? n : "(Bharien...)";
+            document.getElementById('r-phone').innerText = p ? p : "(Bharien...)";
+            document.getElementById('r-addr').innerText = a ? a : "(Bharien...)";
         }
         function executeOrder(e) {
             e.preventDefault();
